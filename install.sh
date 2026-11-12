@@ -157,18 +157,14 @@ detect_image() {
 }
 
 detect_pkgmgr() {
+    # Prefer dpkg when this really is a debian-based Enigma2 image (DreamOS,
+    # OpenATV 8+, OpenPLi 8+).  Some of them ship an opkg->apt shim whose
+    # --version string is misleading, so query the enigma2 package instead.
+    if command -v dpkg >/dev/null 2>&1 && dpkg -s enigma2 >/dev/null 2>&1; then
+        PKGMGR="dpkg"; FORMAT="deb"; return
+    fi
     if command -v opkg >/dev/null 2>&1; then
-        OPGK_VER="$(opkg --version 2>&1 | head -n 1)"
-        case "$OPGK_VER" in
-            opkg*)
-                PKGMGR="opkg"; FORMAT="ipk"; return ;;
-            *)
-                # OpenATV 8/9 and other apt based images ship an opkg->apt shim
-                if command -v dpkg >/dev/null 2>&1; then
-                    PKGMGR="dpkg"; FORMAT="deb"; return
-                fi
-                PKGMGR="opkg"; FORMAT="ipk"; return ;;
-        esac
+        PKGMGR="opkg"; FORMAT="ipk"; return
     fi
     if command -v dpkg >/dev/null 2>&1; then
         PKGMGR="dpkg"; FORMAT="deb"; return
@@ -367,7 +363,9 @@ for p in python2 python3 python; do
     if command -v "$p" >/dev/null 2>&1; then PYBIN="$p"; break; fi
 done
 if [ -n "$PYBIN" ]; then
-    if "$PYBIN" -m py_compile "$PLUGIN_DIR"/*.py >/tmp/autobiss_pycheck.log 2>&1; then
+    if ! "$PYBIN" -c "import py_compile" >/dev/null 2>&1; then
+        warn "py_compile missing on this image, skipping the syntax check"
+    elif "$PYBIN" -m py_compile "$PLUGIN_DIR"/*.py >/tmp/autobiss_pycheck.log 2>&1; then
         ok "python check passed ($("$PYBIN" --version 2>&1))"
     else
         err "python check failed on this receiver:"
