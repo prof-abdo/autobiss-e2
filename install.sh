@@ -27,7 +27,7 @@
 #  Exit codes: 0 ok, 1 error, 2 unsupported receiver
 # =============================================================================
 
-PLUGIN_VERSION="3.4"
+PLUGIN_VERSION="3.5"
 DEFAULT_REPO="prof-abdo/autobiss-e2"
 DEFAULT_TAG="v3.0"
 MIRROR_URL="https://tsdec.kingcs.xyz/autobiss"

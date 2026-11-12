@@ -5,7 +5,7 @@ AutoBiss E2 is an Enigma2 plugin for **Dreambox / Gemini (DreamOS)**, **OpenATV*
 the control word, writes it to the softcam and keeps a live list of satellite
 feeds with one-click **Search** and **Zap**.
 
-![version](https://img.shields.io/badge/version-3.4-blue)
+![version](https://img.shields.io/badge/version-3.5-blue)
 ![python](https://img.shields.io/badge/python-2.7%20%7C%203.x-green)
 
 ## Features
@@ -54,8 +54,8 @@ come back.
 
 ## Manual installation
 
-- Debian/apt based images: `dpkg -i enigma2-plugin-extensions-autobiss_3.4_all.deb`
-- opkg based images: `opkg install enigma2-plugin-extensions-autobiss_3.4_all.ipk`
+- Debian/apt based images: `dpkg -i enigma2-plugin-extensions-autobiss_3.5_all.deb`
+- opkg based images: `opkg install enigma2-plugin-extensions-autobiss_3.5_all.ipk`
 
 Then restart Enigma2 and open **Extensions → AutoBiss E2**.
 
