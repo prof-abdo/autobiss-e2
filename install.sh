@@ -28,7 +28,7 @@
 # =============================================================================
 
 PLUGIN_VERSION="3.1"
-DEFAULT_REPO="kingcs/autobiss-e2"
+DEFAULT_REPO="prof-abdo/autobiss-e2"
 DEFAULT_TAG="v3.0"
 MIRROR_URL="https://tsdec.kingcs.xyz/autobiss"
 

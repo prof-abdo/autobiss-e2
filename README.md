@@ -20,13 +20,13 @@ feeds with one-click **Search** and **Zap**.
 ## Installation (one command)
 
 ```sh
-wget -O - https://raw.githubusercontent.com/OWNER/REPO/main/install.sh | sh
+wget -O - https://raw.githubusercontent.com/prof-abdo/autobiss-e2/main/install.sh | sh
 ```
 
 or:
 
 ```sh
-curl -sSL https://raw.githubusercontent.com/OWNER/REPO/main/install.sh | sh
+curl -sSL https://raw.githubusercontent.com/prof-abdo/autobiss-e2/main/install.sh | sh
 ```
 
 The installer **detects the receiver and the image first**, then installs the
