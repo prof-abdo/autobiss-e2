@@ -5,7 +5,7 @@ AutoBiss E2 is an Enigma2 plugin for **Dreambox / Gemini (DreamOS)**, **OpenATV*
 the control word, writes it to the softcam and keeps a live list of satellite
 feeds with one-click **Search** and **Zap**.
 
-![version](https://img.shields.io/badge/version-3.7.4-blue)
+![version](https://img.shields.io/badge/version-3.7.5-blue)
 ![python](https://img.shields.io/badge/python-2.7%20%7C%203.x-green)
 
 ## Features
@@ -19,6 +19,17 @@ feeds with one-click **Search** and **Zap**.
   **Search** (native service scan on the tuner that receives the feed) and **Zap** buttons.
 - Works on Python 2.7 (DreamOS, OpenPLi 7) and Python 3 (OpenATV 7+).
 - Signed, verified updates (HMAC-SHA256 manifest).
+
+## What's new in 3.7.5
+
+- **DreamOS service detection fixed**: the service reference, TSID, ONID and
+  PMT PID are read from the real reference/OSCam log instead of the bogus
+  DreamOS `sTSID`/`sONID`/`sPMTPID` values.
+- The VPS reuses a key already found by another image for the same
+  SID + PMT + video/audio PID fingerprint, so a DreamOS box can open a channel
+  whose key was discovered on OpenATV without recording anything.
+- Emulator refresh works with `oscam_2 -b` (no `--config-dir`) and falls back
+  from localhost to the receiver's LAN IP when the WebIF rejects loopback.
 
 ## What's new in 3.7.4
 
@@ -68,8 +79,8 @@ come back.
 
 ## Manual installation
 
-- Debian/apt based images: `dpkg -i enigma2-plugin-extensions-autobiss_3.7.4_all.deb`
-- opkg based images: `opkg install enigma2-plugin-extensions-autobiss_3.7.4_all.ipk`
+- Debian/apt based images: `dpkg -i enigma2-plugin-extensions-autobiss_3.7.5_all.deb`
+- opkg based images: `opkg install enigma2-plugin-extensions-autobiss_3.7.5_all.ipk`
 
 Then restart Enigma2 and open **Extensions → AutoBiss E2**.
 
