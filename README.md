@@ -5,7 +5,7 @@ AutoBiss E2 is an Enigma2 plugin for **Dreambox / Gemini (DreamOS)**, **OpenATV*
 the control word, writes it to the softcam and keeps a live list of satellite
 feeds with one-click **Search** and **Zap**.
 
-![version](https://img.shields.io/badge/version-3.7.5-blue)
+![version](https://img.shields.io/badge/version-3.7.6-blue)
 ![python](https://img.shields.io/badge/python-2.7%20%7C%203.x-green)
 
 ## Features
@@ -19,6 +19,14 @@ feeds with one-click **Search** and **Zap**.
   **Search** (native service scan on the tuner that receives the feed) and **Zap** buttons.
 - Works on Python 2.7 (DreamOS, OpenPLi 7) and Python 3 (OpenATV 7+).
 - Signed, verified updates (HMAC-SHA256 manifest).
+
+## What's new in 3.7.6
+
+- **No more disk filling**: old AutoBiss sample `.ts` files are deleted at
+  plugin startup and after every key attempt, including files left by an
+  interrupted run or by the old DreamOS path bug. User recordings are never
+  touched (only names containing `AutoBiss` are considered).
+- Sidecar files (`.ts.cuts`, `.ts.meta`, `.ts.sc`, `.ts.ap`) are removed too.
 
 ## What's new in 3.7.5
 
@@ -79,8 +87,8 @@ come back.
 
 ## Manual installation
 
-- Debian/apt based images: `dpkg -i enigma2-plugin-extensions-autobiss_3.7.5_all.deb`
-- opkg based images: `opkg install enigma2-plugin-extensions-autobiss_3.7.5_all.ipk`
+- Debian/apt based images: `dpkg -i enigma2-plugin-extensions-autobiss_3.7.6_all.deb`
+- opkg based images: `opkg install enigma2-plugin-extensions-autobiss_3.7.6_all.ipk`
 
 Then restart Enigma2 and open **Extensions → AutoBiss E2**.
 
