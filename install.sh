@@ -16,7 +16,7 @@
 #
 #  Options:
 #     --check           only detect the receiver/image, install nothing
-#     --version <ver>   plugin version to install (default: 3.0)
+#     --version <ver>   plugin version to install (default: 3.7.2)
 #     --repo <o/r>      GitHub repository holding the release assets
 #     --url <base-url>  explicit base URL for the package files
 #     --local <file>    install a package that is already on the receiver
@@ -27,7 +27,7 @@
 #  Exit codes: 0 ok, 1 error, 2 unsupported receiver
 # =============================================================================
 
-PLUGIN_VERSION="3.5"
+PLUGIN_VERSION="3.7.2"
 DEFAULT_REPO="prof-abdo/autobiss-e2"
 DEFAULT_TAG="v3.0"
 MIRROR_URL="https://tsdec.kingcs.xyz/autobiss"
@@ -278,6 +278,7 @@ else
         TAG="$TAG" # keep tag in sync with version unless overridden
         TAG="v${PLUGIN_VERSION}"
         CANDIDATES="https://github.com/${R_OWNER}/${R_NAME}/releases/download/${TAG}
+https://raw.githubusercontent.com/${R_OWNER}/${R_NAME}/main/releases
 https://raw.githubusercontent.com/${R_OWNER}/${R_NAME}/main
 ${MIRROR_URL}"
     fi

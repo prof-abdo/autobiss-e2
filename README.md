@@ -5,17 +5,36 @@ AutoBiss E2 is an Enigma2 plugin for **Dreambox / Gemini (DreamOS)**, **OpenATV*
 the control word, writes it to the softcam and keeps a live list of satellite
 feeds with one-click **Search** and **Zap**.
 
-![version](https://img.shields.io/badge/version-3.5-blue)
+![version](https://img.shields.io/badge/version-3.7.2-blue)
 ![python](https://img.shields.io/badge/python-2.7%20%7C%203.x-green)
 
 ## Features
 
 - Full-screen 1920x1080 interface (Control Center, Channel Info, Live Feeds, Settings).
 - BISS key detection with CW cache and automatic softcam injection.
+- Keys are written with an identifier proven by OSCam for the same service:
+  universal/namespace hash or a verified `Key found` transaction — no SID+PMT guessing.
+- Softcam reload is verified against the emulator entitlements before reporting success.
 - Live Feeds: imported automatically, colour status lamp (BISS / 4:2:2 / FTA),
-  **Search** (native service scan) and **Zap** buttons.
+  **Search** (native service scan on the tuner that receives the feed) and **Zap** buttons.
 - Works on Python 2.7 (DreamOS, OpenPLi 7) and Python 3 (OpenATV 7+).
 - Signed, verified updates (HMAC-SHA256 manifest).
+
+## What's new in 3.7.2
+
+- **Live Feeds Search fixed**: works on images without `RollOff_auto`, uses the
+  correct DVB-S/DVB-S2 and modulation, and no longer falls back to the generic
+  Scan Setup screen (which started on the wrong satellite/frequency).
+- Search selects the tuner whose satellite list actually contains the feed's
+  orbital position; if the satellite is not configured it says so instead of
+  scanning the wrong one.
+- Correct short satellite labels (`Hot Bird 13`, `16A`, `21B`, `7B-7C`, `0.8W`).
+- OSD shows `Key Found : <CW>` for five seconds after a verified key write.
+- Reliable 3.7.x OTA updates from the VPS; both `.ipk` (opkg) and `.deb` (apt/dpkg)
+  packages are published.
+
+> Receivers still on 3.4 or older must install this release manually once: their
+> built-in updater predates the Python 2 hash fix.
 
 ## Installation (one command)
 
@@ -54,8 +73,8 @@ come back.
 
 ## Manual installation
 
-- Debian/apt based images: `dpkg -i enigma2-plugin-extensions-autobiss_3.5_all.deb`
-- opkg based images: `opkg install enigma2-plugin-extensions-autobiss_3.5_all.ipk`
+- Debian/apt based images: `dpkg -i enigma2-plugin-extensions-autobiss_3.7.2_all.deb`
+- opkg based images: `opkg install enigma2-plugin-extensions-autobiss_3.7.2_all.ipk`
 
 Then restart Enigma2 and open **Extensions → AutoBiss E2**.
 
