@@ -301,6 +301,9 @@ https://raw.githubusercontent.com/${R_OWNER}/${R_NAME}/main"
     for C in $CANDIDATES; do
         C="$(echo "$C" | sed 's/[[:space:]]*$//')"
         if download "${C%/}/SHA256SUMS" "SHA256SUMS" 2>/dev/null; then
+            # tolerate CRLF metadata (e.g. copied from Windows)
+            tr -d '\r' < "SHA256SUMS" > "SHA256SUMS.tmp" 2>/dev/null \
+                && mv "SHA256SUMS.tmp" "SHA256SUMS"
             EXPECT="$(grep " ${FILE_NAME}\$" "SHA256SUMS" | head -n 1 | cut -d' ' -f1)"
             if [ -n "$EXPECT" ]; then
                 ACTUAL="$(sha256_of "$PKG_FILE")"
