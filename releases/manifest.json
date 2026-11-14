@@ -1,0 +1,11 @@
+{
+  "files": {
+    "__init__.py": "f9f5cae2272314a1b0e19ca3835eaddd0cde37167c6488ff0579a0ee09b26a12",
+    "biss_engine.py": "039e79565af513ff8cbcc951c77a9250b8a13c13d77ee48504d5ac7c19adebe8",
+    "device.py": "ee7352b8d34aa8f9d41a6132ccefa3244e01599c067b37ca3960d6984d06f20c",
+    "key_analyzer.py": "03453783f07cde2f74f0b70f2089dc7d03914f04074f8e51697c3a31cfd122dd",
+    "plugin.py": "a206249c19e9412332f0f21726dd2238b6dbd3460b8ab849bbc4b0e6d4d46aa4",
+    "updater.py": "55f989301c616e46dc47bb249002787a896236d674ed944d543438c216fb7656"
+  },
+  "version": "3.7.8"
+}

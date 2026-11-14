@@ -5,7 +5,7 @@ AutoBiss E2 is an Enigma2 plugin for **Dreambox / Gemini (DreamOS)**, **OpenATV*
 the control word, writes it to the softcam and keeps a live list of satellite
 feeds with one-click **Search** and **Zap**.
 
-![version](https://img.shields.io/badge/version-3.7.7-blue)
+![version](https://img.shields.io/badge/version-3.7.8-blue)
 ![python](https://img.shields.io/badge/python-2.7%20%7C%203.x-green)
 
 ## Features
@@ -19,6 +19,17 @@ feeds with one-click **Search** and **Zap**.
   **Search** (native service scan on the tuner that receives the feed) and **Zap** buttons.
 - Works on Python 2.7 (DreamOS, OpenPLi 7) and Python 3 (OpenATV 7+).
 - Signed, verified updates (HMAC-SHA256 manifest).
+
+## What's new in 3.7.8
+
+- **Full-screen UI on 4K/1440p OSDs**: the plugin now reads the receiver's
+  real OSD resolution and scales the whole layout (positions, sizes, fonts,
+  list rows and backgrounds) to fill the screen. Previously a 1920x1080
+  layout was drawn at native size in the top-left corner on images using
+  `config.osd.calibrationResolution=2560x1440`.
+- Native backgrounds are bundled for 1280x720, 1920x1080, 2560x1440,
+  3413x1920 and 3840x2160, so the panels stay sharp at every size.
+- Verified on OpenATV 8.1 with a 2560x1440 OSD (Dreambox Two).
 
 ## What's new in 3.7.7
 
@@ -97,8 +108,8 @@ come back.
 
 ## Manual installation
 
-- Debian/apt based images: `dpkg -i enigma2-plugin-extensions-autobiss_3.7.7_all.deb`
-- opkg based images: `opkg install enigma2-plugin-extensions-autobiss_3.7.7_all.ipk`
+- Debian/apt based images: `dpkg -i enigma2-plugin-extensions-autobiss_3.7.8_all.deb`
+- opkg based images: `opkg install enigma2-plugin-extensions-autobiss_3.7.8_all.ipk`
 
 Then restart Enigma2 and open **Extensions → AutoBiss E2**.
 
