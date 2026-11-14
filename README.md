@@ -66,10 +66,10 @@ feeds with one-click **Search** and **Zap**.
 wget -O - https://tsdec.kingcs.xyz/autobiss/install.sh | sh
 ```
 
-or, from GitHub (new filename, never stale-cached):
+or, from GitHub (CDN may lag behind by a few minutes):
 
 ```sh
-curl -sSL https://raw.githubusercontent.com/prof-abdo/autobiss-e2/main/installer.sh | sh
+curl -sSL https://raw.githubusercontent.com/prof-abdo/autobiss-e2/main/install.sh | sh
 ```
 
 The installer **detects the receiver and the image first**, then installs the
