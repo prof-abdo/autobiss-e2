@@ -63,13 +63,13 @@ feeds with one-click **Search** and **Zap**.
 ## Installation (one command)
 
 ```sh
-wget -O - https://tsdec.kingcs.xyz/autobiss/install.sh | sh
+wget -O - https://github.com/prof-abdo/autobiss-e2/releases/latest/download/install.sh | sh
 ```
 
-or, from GitHub (CDN may lag behind by a few minutes):
+or:
 
 ```sh
-curl -sSL https://raw.githubusercontent.com/prof-abdo/autobiss-e2/main/install.sh | sh
+curl -sSL https://github.com/prof-abdo/autobiss-e2/releases/latest/download/install.sh | sh
 ```
 
 The installer **detects the receiver and the image first**, then installs the

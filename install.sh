@@ -11,8 +11,8 @@
 #     * Python version  (2.7 or 3.x, the plugin supports both)
 #
 #  Usage:
-#     wget -O - https://raw.githubusercontent.com/OWNER/REPO/main/install.sh | sh
-#     curl -sSL https://raw.githubusercontent.com/OWNER/REPO/main/install.sh | sh
+#     wget -O - https://github.com/OWNER/REPO/releases/latest/download/install.sh | sh
+#     curl -sSL https://github.com/OWNER/REPO/releases/latest/download/install.sh | sh
 #
 #  Options:
 #     --check           only detect the receiver/image, install nothing
@@ -30,7 +30,6 @@
 PLUGIN_VERSION="3.7.7"
 DEFAULT_REPO="prof-abdo/autobiss-e2"
 DEFAULT_TAG="v3.0"
-MIRROR_URL="https://tsdec.kingcs.xyz/autobiss"
 
 REPO=""
 BASE_URL=""
@@ -277,8 +276,7 @@ else
         TAG="${DEFAULT_TAG}"
         TAG="$TAG" # keep tag in sync with version unless overridden
         TAG="v${PLUGIN_VERSION}"
-        CANDIDATES="${MIRROR_URL}
-https://github.com/${R_OWNER}/${R_NAME}/releases/download/${TAG}
+        CANDIDATES="https://github.com/${R_OWNER}/${R_NAME}/releases/download/${TAG}
 https://raw.githubusercontent.com/${R_OWNER}/${R_NAME}/main/releases
 https://raw.githubusercontent.com/${R_OWNER}/${R_NAME}/main"
     fi
