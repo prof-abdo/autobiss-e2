@@ -45,10 +45,10 @@ if [ -t 1 ]; then
 else
     R=''; G=''; Y=''; B=''; N=''
 fi
-info() { echo "${B}[*]${N} $*"; }
-ok()   { echo "${G}[+]${N} $*"; }
-warn() { echo "${Y}[!]${N} $*"; }
-err()  { echo "${R}[-]${N} $*" >&2; }
+info() { printf '%b[*]%b %s\n' "$B" "$N" "$*"; }
+ok()   { printf '%b[+]%b %s\n' "$G" "$N" "$*"; }
+warn() { printf '%b[!]%b %s\n' "$Y" "$N" "$*"; }
+err()  { printf '%b[-]%b %s\n' "$R" "$N" "$*" >&2; }
 die()  { err "$*"; exit 1; }
 
 # ── Arguments ─────────────────────────────────────────────────────────────────
@@ -399,16 +399,6 @@ fi
 rm -f /tmp/enigma2_plugins.xml 2>/dev/null || true
 
 # ── 4. Restart Enigma2 ───────────────────────────────────────────────────────
-if [ "$ASSUME_YES" != "1" ]; then
-    echo ""
-    printf '  Restart Enigma2 now? [y/N] '
-    read -r ANS
-    case "$ANS" in
-        y|Y|yes|YES) ;;
-        *) echo ""; warn "skipped — restart Enigma2 manually to load the plugin"; exit 0 ;;
-    esac
-fi
-
 info "restarting Enigma2 ..."
 if command -v systemctl >/dev/null 2>&1 && systemctl list-units 2>/dev/null | grep -q enigma2; then
     systemctl restart enigma2 2>/dev/null || killall -9 enigma2 2>/dev/null || true
