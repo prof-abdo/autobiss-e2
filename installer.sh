@@ -241,10 +241,10 @@ cd "$TMPDIR_" || die "cannot create $TMPDIR_"
 download() {
     URL="$1"; OUT="$2"
     if command -v curl >/dev/null 2>&1; then
-        curl -fsSL -o "$OUT" "$URL" && return 0
+        curl -fsSL -o "$OUT" "$URL" 2>/dev/null && return 0
     fi
     if command -v wget >/dev/null 2>&1; then
-        wget -q -O "$OUT" "$URL" && return 0
+        wget -q -O "$OUT" "$URL" 2>/dev/null && return 0
     fi
     return 1
 }
@@ -277,10 +277,10 @@ else
         TAG="${DEFAULT_TAG}"
         TAG="$TAG" # keep tag in sync with version unless overridden
         TAG="v${PLUGIN_VERSION}"
-        CANDIDATES="https://github.com/${R_OWNER}/${R_NAME}/releases/download/${TAG}
+        CANDIDATES="${MIRROR_URL}
+https://github.com/${R_OWNER}/${R_NAME}/releases/download/${TAG}
 https://raw.githubusercontent.com/${R_OWNER}/${R_NAME}/main/releases
-https://raw.githubusercontent.com/${R_OWNER}/${R_NAME}/main
-${MIRROR_URL}"
+https://raw.githubusercontent.com/${R_OWNER}/${R_NAME}/main"
     fi
 
     FILE_NAME="${PKG_NAME}.${FORMAT}"
@@ -364,10 +364,16 @@ for p in python2 python3 python; do
     if command -v "$p" >/dev/null 2>&1; then PYBIN="$p"; break; fi
 done
 if [ -n "$PYBIN" ]; then
-    if ! "$PYBIN" -c "import py_compile" >/dev/null 2>&1; then
-        warn "py_compile missing on this image, skipping the syntax check"
-    elif "$PYBIN" -m py_compile "$PLUGIN_DIR"/*.py >/tmp/autobiss_pycheck.log 2>&1; then
+    if "$PYBIN" -m py_compile "$PLUGIN_DIR"/*.py >/tmp/autobiss_pycheck.log 2>&1; then
         ok "python check passed ($("$PYBIN" --version 2>&1))"
+    elif "$PYBIN" -c "import py_compile" >/dev/null 2>&1; then
+        err "python check failed on this receiver:"
+        sed 's/^/    /' /tmp/autobiss_pycheck.log
+        exit 1
+    elif "$PYBIN" -c 'import sys,glob
+for f in sys.argv[1:]:
+    compile(open(f,"rb").read(), f, "exec")' "$PLUGIN_DIR"/*.py >/tmp/autobiss_pycheck.log 2>&1; then
+        ok "python check passed ($("$PYBIN" --version 2>&1), builtin compiler)"
     else
         err "python check failed on this receiver:"
         sed 's/^/    /' /tmp/autobiss_pycheck.log
